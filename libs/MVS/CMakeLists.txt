@@ -6,6 +6,7 @@ if(CGAL_FOUND)
 	link_directories(${CGAL_LIBRARY_DIRS})
 endif()
 
+set(VCG_ROOT "/Users/anshijie/git/openMVS/vcglib")
 FIND_PACKAGE(VCG REQUIRED)
 if(VCG_FOUND)
 	include_directories(${VCG_INCLUDE_DIRS})

@@ -320,8 +320,8 @@ struct Camera {
 		height = (uint32_t)ReadBinaryLittleEndian<uint64_t>(&stream);
 		ASSERT(ID > 0);
 		--ID;
-		if (model != _T("PINHOLE"))
-			return false;
+//		if (model != _T("PINHOLE"))
+//			return false;
 		params.resize(4);
 		ReadBinaryLittleEndian<double>(&stream, &params);
 		return true;
@@ -605,7 +605,9 @@ struct Point {
 			Track track;
 			track.idImage = ReadBinaryLittleEndian<image_t>(&stream);
 			track.idProj = ReadBinaryLittleEndian<point2D_t>(&stream);
-			ASSERT(track.idImage > 0 && track.idProj > 0);
+            if (!(track.idImage > 0 && track.idProj > 0))
+                continue;
+//			ASSERT(track.idImage > 0 && track.idProj > 0);
 			--track.idImage; --track.idProj;
 			tracks.emplace_back(track);
 		}

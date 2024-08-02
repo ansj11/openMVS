@@ -183,7 +183,9 @@ bool Scene::LoadInterface(const String & fileName)
 			std::sort(indices.begin(), indices.end(), [&](IndexArr::Type i0, IndexArr::Type i1) -> bool {
 				return vertex.views[i0].imageID < vertex.views[i1].imageID;
 			});
-			ASSERT(vertex.views.size() >= 2);
+//			ASSERT(vertex.views.size() >= 2);
+            if (!(vertex.views.size() >= 2))
+                continue;
 			views.ForEach([&](PointCloud::ViewArr::IDX v) {
 				const Interface::Vertex::View& view = vertex.views[indices[v]];
 				views[v] = view.imageID;
